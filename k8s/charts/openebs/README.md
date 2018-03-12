@@ -33,11 +33,11 @@ The following tables lists the configurable parameters of the OpenEBS chart and 
 | `rbacEnable`            | Enable RBAC Resources              | `true`                                                     |
 | `image.pullPolicy`      | Container pull policy              | `IfNotPresent`                                             |
 | `apiserver.image`       | Docker Image for API Server        | `openebs/m-apiserver`                                      |
-| `apiserver.tag`         | Docker Image Tag for API Server    | `0.5.1`                                                    |
+| `apiserver.tag`         | Docker Image Tag for API Server    | `0.5.3`                                                    |
 | `provisioner.image`     | Docker Image for Provisioner       | `openebs/openebs-k8s-provisioner`                          |
-| `provisioner.tag`       | Docker Image Tag for Provisioner   | `0.5.1`                                                    |
-| `jiva.image`            | Docker Image for Jiva              | `openebs/jiva:0.5.1`                                       |
-| `jiva.tag`              | Number of Jiva Replicas            | `2`                                                        |
+| `provisioner.tag`       | Docker Image Tag for Provisioner   | `0.5.3`                                                    |
+| `jiva.image`            | Docker Image for Jiva              | `openebs/jiva:0.5.3`                                       |
+| `jiva.tag`              | Number of Jiva Replicas            | `3`                                                        |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
