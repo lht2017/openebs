@@ -8,12 +8,10 @@ However, for those individuals who want a bit more guidance on the best way to c
 
 That said, OpenEBS is an innovation in open-source. You are welcome to contribute in any way you can and all the help provided is very much appreciated. 
 
-- Raise issues to request new functionality, fix documentation or for reporting bugs.
-- Submit changes to improve documentation. 
-- Submit proposals for new features/enhancements.
-- Submit fixes for bugs reported/found. 
-- Submit changes to the source code.
-- Solve existing issues.
+- [Raise issues to request new functionality, fix documentation or for reporting bugs.](#raising-issues)
+- [Submit changes to improve documentation.](# submit-change-to-improve-documentation) 
+- [Submit proposals for new features/enhancements.](#submit-proposals-for-new-features)
+- [Solve existing issues related to documentation or code.](#contributing-to-source-code-&-bug-fixes)
 
 There are just a few simple guidelines that you need to follow before providing your hacks. 
 
