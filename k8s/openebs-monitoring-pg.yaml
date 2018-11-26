@@ -25,6 +25,17 @@ data:
       scrape_interval: 5s
       evaluation_interval: 5s
     scrape_configs:
+    - job_name: 'maya-apiserver'
+      scheme: http
+      kubernetes_sd_configs:
+      - role: pod
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_label_name]
+        regex: maya-apiserver
+        action: keep
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name
     - job_name: 'prometheus'
       scheme: http
       kubernetes_sd_configs:

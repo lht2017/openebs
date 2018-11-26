@@ -1,11 +1,9 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: cstor-sc-sparse-ns-default
+  name: cstor-sc-sparse-tgt-debug
   annotations:
     cas.openebs.io/config: |
-      - name: ReplicaCount
-        value: "1"
       - name: DebugProfile
         value: "cpu"
 spec:

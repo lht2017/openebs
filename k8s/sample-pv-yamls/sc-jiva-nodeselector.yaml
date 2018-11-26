@@ -1,0 +1,22 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-jiva-nodeselector
+  annotations:
+    openebs.io/cas-type: jiva
+    cas.openebs.io/config: |
+      - name: ReplicaCount
+        value: "1"
+      - name: ReplicaNodeSelector
+        value: |-
+            #nodetype: storage
+            failure-domain.beta.kubernetes.io/region: us-central1
+            openebs.io/node.id: b
+      - name: TargetNodeSelector
+        value: |-
+            #nodetype: app
+            failure-domain.beta.kubernetes.io/region: us-central1
+            openebs.io/node.id: a
+provisioner: openebs.io/provisioner-iscsi
+---
