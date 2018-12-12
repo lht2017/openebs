@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fio-test
+  labels:
+    name: fio-test
+spec:
+  containers:
+  - name: fio-test
+    image: openebs/tests-fio
+    command: ["/bin/bash", "-ec", "while :; do echo '.'; sleep 60; done"]
+    tty: true
+    volumeMounts:
+    - mountPath: /datadir
+      name: datavol
+  nodeSelector:
+    #kubernetes.io/hostname: gke-kmova-helm-default-pool-49baeb75-prm9
+    kubernetes.io/hostname: gke-kmova-helm-default-pool-49baeb75-7dl5
+  volumes:
+    - name: datavol
+      persistentVolumeClaim:
+        claimName: demo-cstor-disk-vol1-claim

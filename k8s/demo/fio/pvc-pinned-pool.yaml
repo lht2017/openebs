@@ -1,0 +1,16 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pinned-pool-pvc
+  annotations:
+    cas.openebs.io/config: |
+      - name: ReplicaCount
+        value: "1"
+spec:
+  storageClassName: pinned-pool
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100G
+---

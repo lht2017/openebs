@@ -1,0 +1,17 @@
+[global]
+ioengine=libaio
+invalidate=1
+ramp_time=30
+iodepth=128
+runtime=180
+time_based
+direct=1
+
+[write-all-4k-seq]
+stonewall
+bs=4k
+directory=/datadir
+filename=fio.test.file
+rw=write
+write_bw_log=4k-all-write-seq.results
+write_iops_log=4k-all-write-seq.results
