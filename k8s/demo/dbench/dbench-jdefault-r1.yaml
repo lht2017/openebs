@@ -1,14 +1,36 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: dbench-jd-pv-claim
+  annotations:
+    cas.openebs.io/config: |
+      - name: ReplicaCount
+        value: "1"
+      - name: TargetNodeSelector
+        value: |-
+            "kubernetes.io/hostname": "gke-kmova-perf-default-pool-8691dea0-512r"
+      - name: ReplicaNodeSelector
+        value: |-
+            "kubernetes.io/hostname": "gke-kmova-perf-default-pool-8691dea0-512r"
+spec:
+  storageClassName: openebs-jiva-default
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dbench
+  name: dbench-jd
 spec:
   template:
     spec:
       nodeSelector:
         kubernetes.io/hostname: gke-kmova-perf-default-pool-8691dea0-512r
       containers:
-      - name: dbench
+      - name: dbench-jd
         image: logdna/dbench:latest
         imagePullPolicy: Always
         env:
@@ -29,5 +51,5 @@ spec:
       volumes:
       - name: dbench-pv
         persistentVolumeClaim:
-          claimName: dbench-pv-claim
+          claimName: dbench-jd-pv-claim
   backoffLimit: 4

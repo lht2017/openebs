@@ -1,14 +1,13 @@
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: dbench
+  name: dbench-localssd
 spec:
   template:
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: gke-kmova-perf-default-pool-8691dea0-512r
       containers:
-      - name: dbench
+      - name: dbench-localssd
         image: logdna/dbench:latest
         imagePullPolicy: Always
         env:
@@ -17,7 +16,7 @@ spec:
           # - name: DBENCH_QUICK
           #   value: "yes"
           - name: FIO_SIZE
-            value: 1G
+            value: 175G
           - name: FIO_OFFSET_INCREMENT
             value: 256M
           # - name: FIO_DIRECT
@@ -28,6 +27,6 @@ spec:
       restartPolicy: Never
       volumes:
       - name: dbench-pv
-        persistentVolumeClaim:
-          claimName: dbench-pv-claim
+        hostPath:
+          path: /mnt/disks/ssd0/dbench
   backoffLimit: 4

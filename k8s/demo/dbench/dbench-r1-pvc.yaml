@@ -4,12 +4,6 @@ metadata:
   name: dbench-pv-claim
 spec:
   storageClassName: openebs-cstor-r1
-  # storageClassName: openebs-jiva-default
-  # storageClassName: gp2
-  # storageClassName: local-storage
-  # storageClassName: ibmc-block-bronze
-  # storageClassName: ibmc-block-silver
-  # storageClassName: ibmc-block-gold
   accessModes:
     - ReadWriteOnce
   resources:
