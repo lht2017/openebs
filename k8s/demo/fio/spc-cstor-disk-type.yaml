@@ -2,14 +2,9 @@
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
-  name: pinned-pool
-  annotations:
-    openebs.io/cas-type: cstor
-    cas.openebs.io/config: |
-      - name: CstorPoolImage
-        value: "ivishnuvardhan/cstor-pool:no_coalesce-0.8"
+  name: test-pool
 spec:
-  name: pinned-pool
+  name: cstor-disk
   type: disk
   maxPools: 1
   poolSpec:
@@ -18,11 +13,11 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: pinned-pool
+  name: openebs-cstor-disk
   annotations:
     openebs.io/cas-type: cstor
     cas.openebs.io/config: |
       - name: StoragePoolClaim
-        value: "pinned-pool"
+        value: "test-pool"
 provisioner: openebs.io/provisioner-iscsi
 ---

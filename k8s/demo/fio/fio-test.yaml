@@ -13,9 +13,6 @@ spec:
     volumeMounts:
     - mountPath: /datadir
       name: datavol
-  nodeSelector:
-    #kubernetes.io/hostname: gke-kmova-helm-default-pool-49baeb75-prm9
-    kubernetes.io/hostname: gke-kmova-helm-default-pool-49baeb75-7dl5
   volumes:
     - name: datavol
       persistentVolumeClaim:

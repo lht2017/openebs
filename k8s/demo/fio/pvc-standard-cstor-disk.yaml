@@ -1,0 +1,16 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: demo-cstor-disk-vol1-claim
+  annotations:
+    cas.openebs.io/config: |
+      - name: ReplicaCount
+        value: "1"
+spec:
+  storageClassName: openebs-cstor-disk
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100G
+---
