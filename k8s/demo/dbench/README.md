@@ -110,8 +110,41 @@ disk running out of space and causing the systems to freeze.
 cStor also supports running a volume with single replica using the same configuration
 like above (in `Jiva`). 
 
-There is also going to be support for specifying `TargetNodeSelector` for 
-cStor Targets in the coming releases. However, if you are running 0.8.0, 
+To test with cStor single replica, you can do the following:
+```
+#delete the defautl cstor sparse pool
+kubectl delete cstor-sparse-pool
+#Ensure the pool pods are cleared by running
+# kubectl get pods -n openebs
+# kubectl get csp
+# kubectl get sp
+# kubectl get spc
+```
+
+Use the following commands to setup cStor Pool with single instance. 
+```
+kubectl apply -f spc-cstor-sparse-1.yaml 
+# A new SPC will be created - sparse1-pool
+# Check the pool pods are created
+# kubectl get pods -n openebs -o wide
+# Note the kubernetes hostname where the pool pod is launched. 
+```
+
+Configure the StorageClass, to launch the targets on the same nodes as the pool.
+```
+# Edit the storageClass (sc-cstor-sparse-1.yaml) 
+# Update the TargetNodeSelector with the hostname where pool is launched
+kubectl apply -f sc-cstor-sparse-1.yaml
+```
+
+Update the dbench test to run on the same node as target and pool
+```
+# Edit the storageClass (dbench-cstor-sparse-1.yaml) 
+# Update the nodeSelector with the hostname where pool is launched
+kubectl apply -f dbench-cstor-sparse-1.yaml
+```
+
+Note, `TargetNodeSelector` is available from 0.8.1, if you are running 0.8.0, 
 to pin the target to a node, its deployment needs to be edited
 to specify the `nodeSelector`.
 
