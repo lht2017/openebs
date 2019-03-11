@@ -16,7 +16,7 @@ spec:
           # - name: DBENCH_QUICK
           #   value: "yes"
           - name: FIO_SIZE
-            value: 175G
+            value: 1G
           - name: FIO_OFFSET_INCREMENT
             value: 256M
           # - name: FIO_DIRECT
@@ -28,5 +28,5 @@ spec:
       volumes:
       - name: dbench-pv
         hostPath:
-          path: /mnt/disks/ssd0/dbench
+          path: /var/openebs/dbench/
   backoffLimit: 4
