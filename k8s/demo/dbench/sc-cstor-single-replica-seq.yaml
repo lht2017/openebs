@@ -1,0 +1,23 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-cstor-r1-seq
+  annotations:
+    openebs.io/cas-type: cstor
+    cas.openebs.io/config: |
+      # The pool is launched by applying the YAML at
+      # ../../sample-pv-yamls/spc-sparse-single.yaml
+      - name: StoragePoolClaim
+        value: "sparse-claim-auto"
+      - name: ReplicaCount
+        value: "1"
+      # The hostname could be the node where the cstor pool is running.
+      #- name: TargetNodeSelector
+      #  value: |-
+      #      "kubernetes.io/hostname": "gke-kmova-helm-default-pool-a169cf59-kxfm"
+      - name: Luworkers
+        value: "12"
+      - name: QueueDepth
+        value: "32"
+provisioner: openebs.io/provisioner-iscsi
+---
